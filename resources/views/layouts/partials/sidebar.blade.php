@@ -9,10 +9,18 @@
 	</div>
 	<ul class="c-sidebar-nav">
 		<li class="c-sidebar-nav-item">
-			<a class="c-sidebar-nav-link" href="index.html">
+			<a class="c-sidebar-nav-link" href="#">
 				<svg class="c-sidebar-nav-icon">
 					<use xlink:href="{{ asset('icons/svg/free.svg#cil-speedometer') }}"></use>
-				</svg> Dashboard<span class="badge badge-info">NEW</span>
+				</svg> Dashboard
+			</a>
+		</li>
+		
+		<li class="c-sidebar-nav-item">
+			<a class="c-sidebar-nav-link" href="{{ route('kriteria.index') }}">
+				<svg class="c-sidebar-nav-icon">
+					<use xlink:href="{{ asset('icons/svg/free.svg#cil-description') }}"></use>
+				</svg> Kriteria
 			</a>
 		</li>
 	</ul>

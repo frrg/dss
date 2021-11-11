@@ -10,7 +10,6 @@
 	<meta name="author" content="Feri">
 	<meta name="keyword" content="Belajar Program untuk Skripsi">
 	<title>@yield('title')</title>
-	<link href="{{ asset('css/simplebar.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/coreui.min.css') }}" rel="stylesheet">
 </head>
 
@@ -27,6 +26,8 @@
 	</div>
 
 	<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+	<script src="{{ mix('js/app.js') }}"></script>
+	@stack('scripts')
 </body>
 
 </html>
