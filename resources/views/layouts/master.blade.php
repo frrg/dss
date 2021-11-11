@@ -25,7 +25,6 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 	<script src="{{ mix('js/app.js') }}"></script>
 	@stack('scripts')
 </body>

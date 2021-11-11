@@ -51,13 +51,6 @@ class KriteriaDataTable extends DataTable
         return $this->builder()
                     ->setTableId('kriteria-table')
                     ->columns($this->getColumns())
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    )
                     ->minifiedAjax($this->url(), null, [
                         'term'   => "function(){ return $('input#term').val(); }",
                     ])
