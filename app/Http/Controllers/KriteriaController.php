@@ -37,8 +37,10 @@ class KriteriaController extends Controller
         // 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        // 
+        $kriteriaDelete = KriteriaM::findOrFail($id);
+        $kriteriaDelete->delete();
+        return response()->jsonApi(200,'OK');
     }
 }

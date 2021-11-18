@@ -26,7 +26,14 @@ class KriteriaDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addIndexColumn()
-            ->addColumn('action', 'kriteria.action')
+            ->addColumn('action', function ($val) {
+                return view(
+                    'dashboard.kriteria._action',
+                    [
+                        'id' => $val->id,
+                    ]
+                );
+            })
             ->toJson();
     }
 
@@ -49,28 +56,28 @@ class KriteriaDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('kriteria-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax($this->url(), null, [
-                        'term'   => "function(){ return $('input#term').val(); }",
-                    ])
-                    ->parameters([
-                        'pageLength' => 5,
-                        'paging'     => true,
-                        'processing' => true,
-                        'serverSide' => true,
-                        'responsive' => true,
-                        'dom'        => '<t<p >>',
-                        'destroy'   => true,
-                        'autoWidth' => false,
-                        'language' => [
-                            'lengthMenu' => '_MENU_',
-                            'info' => 'Menampilkan <b>_START_ sampai _END_</b> dari _TOTAL_ data',
-                            'zeroRecords' => 'Tidak ada data',
-                            'emptyTable' => 'Data tidak tersedia',
-                            'loadingRecords' => 'Loading...',
-                        ],
-                    ]);
+            ->setTableId('kriteria-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax($this->url(), null, [
+                'term'   => "function(){ return $('input#term').val(); }",
+            ])
+            ->parameters([
+                'pageLength' => 5,
+                'paging'     => true,
+                'processing' => true,
+                'serverSide' => true,
+                'responsive' => true,
+                'dom'        => '<t<p >>',
+                'destroy'   => true,
+                'autoWidth' => false,
+                'language' => [
+                    'lengthMenu' => '_MENU_',
+                    'info' => 'Menampilkan <b>_START_ sampai _END_</b> dari _TOTAL_ data',
+                    'zeroRecords' => 'Tidak ada data',
+                    'emptyTable' => 'Data tidak tersedia',
+                    'loadingRecords' => 'Loading...',
+                ],
+            ]);
     }
 
     /**
@@ -87,10 +94,11 @@ class KriteriaDataTable extends DataTable
             Column::make('kriteria_jenis')->title('JENIS'),
             Column::make('created_at')->title('DIBUAT'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+            
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center text-nowrap'),
         ];
     }
 

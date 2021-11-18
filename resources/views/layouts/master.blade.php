@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<meta name="description" content="aplikasi dss">
 	<meta name="author" content="Feri">
+	<meta name="csrf_token" value="{{ csrf_token() }}">
 	<meta name="keyword" content="Belajar Program untuk Skripsi">
 	<title>@yield('title')</title>
 	<link href="{{ asset('css/coreui.min.css') }}" rel="stylesheet">
@@ -16,7 +17,7 @@
 <body class="c-app">
 	@include('layouts.partials.sidebar')
 	<div class="c-wrapper c-fixed-components">
-	@include('layouts.partials.header')
+		@include('layouts.partials.header')
 		<div class="c-body">
 			<main class="c-main">
 				@yield('content')
