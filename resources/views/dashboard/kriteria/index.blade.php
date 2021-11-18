@@ -54,7 +54,15 @@
 						'error'
 					)
 				}
-			})
+			}).catch(function(error) {
+				if (error.response.data.code == '419') {
+					Swal.fire(
+						'Gagal Terhapus!',
+						'Kode Salah',
+						'error'
+					)
+				}
+			});
 		}
 
 		function alertDelete(dom) {
