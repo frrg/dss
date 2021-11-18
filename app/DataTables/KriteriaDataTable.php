@@ -57,6 +57,7 @@ class KriteriaDataTable extends DataTable
     {
         return $this->builder()
             ->setTableId('kriteria-table')
+            ->addTableClass('table-hover table-striped table-sm table-bordered')
             ->columns($this->getColumns())
             ->minifiedAjax($this->url(), null, [
                 'term'   => "function(){ return $('input#term').val(); }",
@@ -94,7 +95,7 @@ class KriteriaDataTable extends DataTable
             Column::make('kriteria_jenis')->title('JENIS'),
             Column::make('created_at')->title('DIBUAT'),
             Column::computed('action')
-            
+                ->title('AKSI')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)

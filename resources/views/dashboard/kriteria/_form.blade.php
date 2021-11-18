@@ -2,7 +2,8 @@
 	{!! Form::label('kriteria_kode','Kode Kriteria') !!}
 	{!! Form::text('kriteria_kode',null,[
 	'class' => 'form-control',
-	'placeholder' => 'Kode Kriteria'
+	'placeholder' => 'Kode Kriteria',
+	'autocomplete' => 'off'
 	]) !!}
 
 	@error('kriteria_kode')
@@ -16,7 +17,8 @@
 	{!! Form::label('kriteria_keterangan','Keterangan Kriteria') !!}
 	{!! Form::text('kriteria_keterangan',null,[
 	'class' => 'form-control',
-	'placeholder' => 'Keterangan Kriteria'
+	'placeholder' => 'Keterangan Kriteria',
+	'autocomplete' => 'off'
 	]) !!}
 
 	@error('kriteria_keterangan')

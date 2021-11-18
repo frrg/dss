@@ -9,7 +9,7 @@
 	</div>
 	<ul class="c-sidebar-nav">
 		<li class="c-sidebar-nav-item">
-			<a class="c-sidebar-nav-link" href="#">
+			<a class="c-sidebar-nav-link" href="/">
 				<svg class="c-sidebar-nav-icon">
 					<use xlink:href="{{ asset('icons/svg/free.svg#cil-speedometer') }}"></use>
 				</svg> Dashboard
