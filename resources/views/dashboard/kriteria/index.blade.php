@@ -15,6 +15,11 @@
 						<h4>Data Kriteria</h4>
 					</div>
 					<div class="card-body">
+						<div class="form-group row">
+							<div class="col-sm-12 text-right">
+								<a href="{{ route('kriteria.create') }}" class="btn btn-primary">Tambah Data</a>
+							</div>
+						</div>
 						@include('dashboard.kriteria._table')
 					</div>
 				</div>
