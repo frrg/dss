@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BobotKriteriaUpdateRequest extends FormRequest
+class PelamarStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,10 @@ class BobotKriteriaUpdateRequest extends FormRequest
      */
     public function rules()
     {
-       $id = $this->kriterium ?? '';
         return [
-            'kriteria_kode' => 'required|unique:kriteria_m,kriteria_kode,'.$id,
-            'kriteria_keterangan' => 'required|min:3',
-            'kriteria_jenis' => 'required|in:BENEFIT,COST'
+            'pelamar_nama' => 'required',
+            'pelamar_alamat' => 'required|min:3',
+            'pelamar_jekel' => 'required|in:LAKI-LAKI,PEREMPUAN'
         ];
     }
 }

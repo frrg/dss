@@ -1,4 +1,5 @@
-<a href="{{ route('kriteria.bobot-kriteria.edit',['kriterium' => request()->kriterium ,'bobot_kriterium' => $id]) }}" class="btn btn-info">
+
+<a href="{{ route('pelamar.edit',$id) }}" class="btn btn-info">
 	<svg class="c-icon">
 		<use xlink:href="{{ asset('icons/svg/free.svg#cil-pencil') }}"></use>
 	</svg>

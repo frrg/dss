@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KriteriaController;
+use App\Http\Controllers\PelamarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,8 +22,14 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', [HomeController::class, 'index']);
+
 	Route::get('kriteria/ajaxtable', [KriteriaController::class, 'ajaxTable'])->name('kriteria.ajaxtable');
 	Route::resource('kriteria', KriteriaController::class);
+
+	
+	Route::get('pelamar/ajaxtable', [PelamarController::class, 'ajaxTable'])->name('pelamar.ajaxtable');
+	Route::resource('pelamar', PelamarController::class);
+
 	Route::get('bobot-kriteria/ajaxtable/{kriterium}', [BobotKriteriaController::class, 'ajaxTable'])->name('bobot-kriteria.ajaxtable');
 	Route::resource('kriteria.bobot-kriteria', BobotKriteriaController::class);
 });

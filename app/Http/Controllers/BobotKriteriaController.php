@@ -44,7 +44,7 @@ class BobotKriteriaController extends Controller
     public function edit($kriterium, $bobot_kriterium)
     {
         $title = "Edit Data Kriteria {$this->kriteria->kriteria_keterangan}";
-        $bobotKriteria = $this->kriteria->bobotkriteria->findOrFail($bobot_kriterium);
+        $bobotKriteria = $this->kriteria->bobotkriteria->where('id',$bobot_kriterium)->firstOrFail();
         return view('dashboard.bobot-kriteria.edit', compact('bobotKriteria', 'title'));
     }
 
