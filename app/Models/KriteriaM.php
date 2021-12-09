@@ -10,7 +10,7 @@ class KriteriaM extends Model
     use HasFactory;
 
     protected $table = 'kriteria_m';
-    protected $fillable = ['kriteria_kode','kriteria_keterangan','kriteria_jenis'];
+    protected $fillable = ['kriteria_kode','kriteria_keterangan','kriteria_bobot','kriteria_jenis'];
 
 
     public function bobotkriteria()

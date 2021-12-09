@@ -3,17 +3,19 @@
 namespace App\DataTables;
 
 use App\Models\KriteriaM;
+use App\Models\Penilaian;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Str;
 
-class KriteriaDataTable extends DataTable
+class PenilaianDataTable extends DataTable
 {
     protected function url()
     {
-        return route('kriteria.ajaxtable');
+        return route('penilaian.ajaxtable');
     }
     /**
      * Build DataTable class.
@@ -23,15 +25,29 @@ class KriteriaDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        return datatables()
-            ->eloquent($query)
+        $datatables = datatables()->eloquent($query);
+        $kriterium = KriteriaM::all();
+        foreach($kriterium as $kriteria){
+            $datatables->addColumn(Str::slug($kriteria->kriteria_keterangan,'_'),function($val)use($kriteria){
+                $penilaian = $val->penilaian()->where('kriteria_id',$kriteria->id);
+            if(!is_null($bobot =$penilaian->first())){
+            return $bobot->bobot_kriteria->bobot;
+            }else{
+                return "-";
+            }
+            
+        });
+    }
+    
+        return $datatables
+            // ->eloquent($query)
             ->addIndexColumn()
             ->editColumn('created_at',function($val){
                 return tanggalWaktuFormat($val->created_at);
             })
             ->addColumn('action', function ($val) {
                 return view(
-                    'dashboard.kriteria._action',
+                    'dashboard.penilaian._action',
                     [
                         'id' => $val->id,
                     ]
@@ -43,10 +59,10 @@ class KriteriaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\KriteriaM $model
+     * @param \App\Models\Penilaian $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(KriteriaM $model)
+    public function query(Penilaian $model)
     {
         return $model->newQuery();
     }
@@ -58,8 +74,10 @@ class KriteriaDataTable extends DataTable
      */
     public function html()
     {
+       
+        // dd($additional);
         return $this->builder()
-            ->setTableId('kriteria-table')
+            ->setTableId('penilaian-table')
             ->addTableClass('table-hover table-striped table-sm table-bordered')
             ->columns($this->getColumns())
             ->minifiedAjax($this->url(), null, [
@@ -91,12 +109,17 @@ class KriteriaDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $additional = [];
+        $kriterium = KriteriaM::all();
+        foreach($kriterium as $index => $kriteria){
+            $additional[] = Column::make(Str::slug($kriteria->kriteria_keterangan,'_'))->title($kriteria->kriteria_keterangan);
+        }
+
+        return [...[
             Column::computed('DT_RowIndex')->searchable(false)->title('#'),
-            Column::make('kriteria_kode')->title('KODE'),
-            Column::make('kriteria_keterangan')->title('KETERANGAN'),
-            Column::make('kriteria_bobot')->title('BOBOT'),
-            Column::make('kriteria_jenis')->title('JENIS'),
+            Column::make('pelamar_nama')->title('NAMA'),
+            Column::make('pelamar_alamat')->title('ALAMAT'),
+        ], ...$additional, ...[
             Column::make('created_at')->title('DIBUAT'),
             Column::computed('action')
                 ->title('AKSI')
@@ -104,7 +127,7 @@ class KriteriaDataTable extends DataTable
                 ->printable(false)
                 ->width(60)
                 ->addClass('text-center text-nowrap'),
-        ];
+    ]];
     }
 
     /**
@@ -114,6 +137,6 @@ class KriteriaDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Kriteria_' . date('YmdHis');
+        return 'Penilaian_' . date('YmdHis');
     }
 }

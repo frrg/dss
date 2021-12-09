@@ -28,6 +28,22 @@
 	@enderror
 </div>
 
+
+<div class="form-group">
+	{!! Form::label('kriteria_bobot','Bobot Kriteria') !!}
+	{!! Form::text('kriteria_bobot',null,[
+	'class' => 'form-control',
+	'placeholder' => 'Kode Kriteria',
+	'autocomplete' => 'off'
+	]) !!}
+
+	@error('kriteria_bobot')
+	<small class="text-danger error-msg">
+		{{ $message }}
+	</small>
+	@enderror
+</div>
+
 <div class="form-group">
 	{!! Form::label('kriteria_jenis','Kode Kriteria') !!}
 	{!! Form::select('kriteria_jenis',[

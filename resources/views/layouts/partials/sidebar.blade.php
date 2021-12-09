@@ -31,6 +31,14 @@
 				</svg> Pelamar
 			</a>
 		</li>
+		
+		<li class="c-sidebar-nav-item">
+			<a class="c-sidebar-nav-link" href="{{ route('penilaian.index') }}">
+				<svg class="c-sidebar-nav-icon">
+					<use xlink:href="{{ asset('icons/svg/free.svg#cil-description') }}"></use>
+				</svg> Penilaian
+			</a>
+		</li>
 	</ul>
 	<button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
 </div>

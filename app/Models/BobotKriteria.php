@@ -11,5 +11,10 @@ class BobotKriteria extends Model
 
     protected $table = 'bobot_kriteria';
     protected $fillable = ['bobot','keterangan','kriteria_id'];
+
+    public function kriteria()
+    {
+        return $this->belongsTo(KriteriaM::class,'kriteria_id');
+    }
     
 }

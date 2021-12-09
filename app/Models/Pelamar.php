@@ -11,5 +11,10 @@ class Pelamar extends Model
 
     protected $table = 'pelamar';
     protected $fillable = ['pelamar_nama','pelamar_alamat','pelamar_jekel'];
-    
+
+    public function penilaian()
+    {
+        return $this->hasMany(Penilaian::class,'pelamar_id');
+    }
+
 }

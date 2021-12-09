@@ -26,7 +26,8 @@ class KriteriaStoreRequest extends FormRequest
         return [
             'kriteria_kode' => 'required|unique:kriteria_m,kriteria_kode',
             'kriteria_keterangan' => 'required|min:3',
-            'kriteria_jenis' => 'required|in:BENEFIT,COST'
+            'kriteria_jenis' => 'required|in:BENEFIT,COST',
+            'kriteria_bobot' => 'required'
         ];
     }
 }
