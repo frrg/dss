@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\PenilaianDataTable;
 use App\Http\Requests\PenilaianStoreRequest;
 use App\Http\Requests\PenilaianUpdateRequest;
+use App\Models\KriteriaM;
 use App\Models\Pelamar;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class PenilaianController extends Controller
     public function create()
     {
         $title = 'Tambah Data Penilaian';
-        return view('dashboard.penilaian.create', compact('title'));
+        $kriterium = KriteriaM::all();
+        return view('dashboard.penilaian.create', compact('title','kriterium'));
     }
 
     public function edit($id)

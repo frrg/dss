@@ -56,7 +56,7 @@
 				} else {
 					Swal.fire(
 						'Gagal Terhapus!',
-						'Data gagal terhapus.',
+						'Data gagal terhapus. : '.concat(response.data.message),
 						'error'
 					)
 				}

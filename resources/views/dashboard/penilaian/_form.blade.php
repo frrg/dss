@@ -1,14 +1,29 @@
+@forelse($kriterium as $kriteria)
 <div class="form-group">
-	{!! Form::label('penilaian_nama','Nama Penilaian') !!}
-	{!! Form::text('penilaian_nama',null,[
+	@php
+	$bobot = [];
+	@endphp
+	@forelse($kriteria->bobotkriteria as $bobotKriteria)
+	@php
+	$bobot[$bobotKriteria->bobot] = $bobotKriteria->bobot;
+	@endphp
+	@empty
+	@php
+	$bobot = [];
+	@endphp
+	@endforelse
+	{!! Form::label($kriteria->kriteria_kode,$kriteria->kriteria_keterangan) !!}
+	{!! Form::select($kriteria->kriteria_kode,$bobot,null,[
 	'class' => 'form-control',
-	'placeholder' => 'Nama Penilaian',
-	'autocomplete' => 'off'
+	'placeholder' => '-- PILIH --'
 	]) !!}
 
-	@error('penilaian_nama')
+	@error($kriteria->kriteria_kode)
 	<small class="text-danger error-msg">
 		{{ $message }}
 	</small>
 	@enderror
 </div>
+@empty
+
+@endforelse

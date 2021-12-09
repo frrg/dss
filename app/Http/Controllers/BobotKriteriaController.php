@@ -27,10 +27,10 @@ class BobotKriteriaController extends Controller
         return view('dashboard.bobot-kriteria.index', compact('datatable', 'title', 'dataKriteria'));
     }
 
-    public function ajaxTable(Request $r,$kriterium, BobotKriteriaDataTable $datatable)
+    public function ajaxTable(Request $r, $kriterium, BobotKriteriaDataTable $datatable)
     {
         if ($r->ajax()) {
-            $bobotKriteria = BobotKriteria::where('kriteria_id',$kriterium);
+            $bobotKriteria = BobotKriteria::where('kriteria_id', $kriterium);
             return $datatable->dataTable($bobotKriteria);
         }
     }
@@ -44,7 +44,7 @@ class BobotKriteriaController extends Controller
     public function edit($kriterium, $bobot_kriterium)
     {
         $title = "Edit Data Kriteria {$this->kriteria->kriteria_keterangan}";
-        $bobotKriteria = $this->kriteria->bobotkriteria->where('id',$bobot_kriterium)->firstOrFail();
+        $bobotKriteria = $this->kriteria->bobotkriteria->where('id', $bobot_kriterium)->firstOrFail();
         return view('dashboard.bobot-kriteria.edit', compact('bobotKriteria', 'title'));
     }
 
@@ -72,10 +72,15 @@ class BobotKriteriaController extends Controller
         return redirect()->route('kriteria.bobot-kriteria.edit', ['kriterium' => $this->kriteria->id, 'bobot_kriterium' => $bobot_kriterium])->with('message', 'Gagal Update Data');
     }
 
-    public function destroy($bobot_kriterium)
+    public function destroy($kriterium, $bobot_kriterium)
     {
-        $bobotKriteriaDelete = $this->kriteria->bobotkriteria->where('id',$bobot_kriterium)->firstOrFail();
-        $bobotKriteriaDelete->delete();
-        return response()->jsonApi(200, 'OK');
+        try {
+            $bobotKriteriaDelete = $this->kriteria->bobotkriteria->where('id', $bobot_kriterium)->firstOrFail();
+            if ($bobotKriteriaDelete->delete()) {
+                return response()->jsonApi(200, 'OK');
+            }
+        } catch (\Exception $e) {
+            return response()->jsonApi(201, $e->getMessage());
+        }
     }
 }

@@ -23,9 +23,8 @@ class BobotKriteriaUpdateRequest extends FormRequest
      */
     public function rules()
     {
-       $id = $this->bobot_kriterium ?? '';
         return [
-            'bobot' => 'required|unique:bobot_kriteria,bobot,'.$id,
+            'bobot' => 'required',
             'keterangan' => 'required|min:3',
         ];
     }

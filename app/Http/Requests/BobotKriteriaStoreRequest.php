@@ -24,7 +24,7 @@ class BobotKriteriaStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'bobot' => 'required|unique:bobot_kriteria,bobot',
+            'bobot' => 'required',
             'keterangan' => 'required|min:3',
         ];
     }
