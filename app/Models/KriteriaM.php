@@ -11,4 +11,10 @@ class KriteriaM extends Model
 
     protected $table = 'kriteria_m';
     protected $fillable = ['kriteria_kode','kriteria_keterangan','kriteria_jenis'];
+
+
+    public function bobotkriteria()
+    {
+        return $this->hasMany(BobotKriteria::class,'kriteria_id');
+    }
 }

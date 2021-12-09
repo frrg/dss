@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KriteriaController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/', [HomeController::class, 'index']);
 	Route::get('kriteria/ajaxtable', [KriteriaController::class, 'ajaxTable'])->name('kriteria.ajaxtable');
 	Route::resource('kriteria', KriteriaController::class);
+	Route::get('bobot-kriteria/ajaxtable/{kriterium}', [BobotKriteriaController::class, 'ajaxTable'])->name('bobot-kriteria.ajaxtable');
+	Route::resource('kriteria.bobot-kriteria', BobotKriteriaController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

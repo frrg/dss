@@ -2,18 +2,21 @@
 
 namespace App\DataTables;
 
-use App\Models\KriteriaM;
+use App\Models\BobotKriteria;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class KriteriaDataTable extends DataTable
+class BobotKriteriaDataTable extends DataTable
 {
+    public $kriteria_id;
+
     protected function url()
     {
-        return route('kriteria.ajaxtable');
+        // dd($this->kriteria_id);
+        return route('bobot-kriteria.ajaxtable',$this->kriteria_id);
     }
     /**
      * Build DataTable class.
@@ -31,7 +34,7 @@ class KriteriaDataTable extends DataTable
             })
             ->addColumn('action', function ($val) {
                 return view(
-                    'dashboard.kriteria._action',
+                    'dashboard.bobot-kriteria._action',
                     [
                         'id' => $val->id,
                     ]
@@ -43,10 +46,10 @@ class KriteriaDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\KriteriaM $model
+     * @param \App\Models\BobotKriteria $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(KriteriaM $model)
+    public function query(BobotKriteria $model)
     {
         return $model->newQuery();
     }
@@ -59,7 +62,7 @@ class KriteriaDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('kriteria-table')
+            ->setTableId('bobot-kriteria-table')
             ->addTableClass('table-hover table-striped table-sm table-bordered')
             ->columns($this->getColumns())
             ->minifiedAjax($this->url(), null, [
@@ -93,9 +96,8 @@ class KriteriaDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->searchable(false)->title('#'),
-            Column::make('kriteria_kode')->title('KODE'),
-            Column::make('kriteria_keterangan')->title('KETERANGAN'),
-            Column::make('kriteria_jenis')->title('JENIS'),
+            Column::make('keterangan')->title('KETERANGAN'),
+            Column::make('bobot')->title('BOBOT'),
             Column::make('created_at')->title('DIBUAT'),
             Column::computed('action')
                 ->title('AKSI')
@@ -113,6 +115,6 @@ class KriteriaDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Kriteria_' . date('YmdHis');
+        return 'BobotKriteria_' . date('YmdHis');
     }
 }

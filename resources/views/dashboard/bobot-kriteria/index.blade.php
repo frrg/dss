@@ -12,15 +12,15 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						<h4>Data Kriteria</h4>
+						<h4>Data Kriteria {{ $dataKriteria->kriteria_keterangan }}</h4>
 					</div>
 					<div class="card-body">
 						<div class="form-group row">
 							<div class="col-sm-12 text-right">
-								<a href="{{ route('kriteria.create') }}" class="btn btn-primary">Tambah Data</a>
+								<a href="{{ route('kriteria.bobot-kriteria.create',request()->kriterium) }}" class="btn btn-primary">Tambah Data</a>
 							</div>
 						</div>
-						@include('dashboard.kriteria._table')
+						@include('dashboard.bobot-kriteria._table')
 					</div>
 				</div>
 			</div>
@@ -35,11 +35,11 @@
 <script type="application/javascript">
 	"use strict";
 	$(document).ready(function() {
-		let oTable = LaravelDataTables['kriteria-table'];
+		let oTable = LaravelDataTables['bobot-kriteria-table'];
 		let token = $('meta[name="csrf_token"]').attr('content');
 
 		function deleteData(dom) {
-			let url = "<?= route('kriteria.destroy', ':id') ?>";
+			let url = "<?= route('kriteria.bobot-kriteria.destroy', ['kriterium'=> request()->kriterium,'bobot_kriterium'=>':id']) ?>";
 			let id = dom.data('id');
 			url = url.replace(':id', id);
 			axios.post(url, {
@@ -86,7 +86,7 @@
 				}
 			})
 		}
-		$('table#kriteria-table tbody').on('click', 'tr td button.delete', function() {
+		$('table#bobot-kriteria-table tbody').on('click', 'tr td button.delete', function() {
 			alertDelete($(this));
 		})
 
