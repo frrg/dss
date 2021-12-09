@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\KriteriaM;
+use App\Models\Pelamar;
 use App\Models\Penilaian;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -46,10 +47,16 @@ class PenilaianDataTable extends DataTable
                 return tanggalWaktuFormat($val->created_at);
             })
             ->addColumn('action', function ($val) {
+                if($val->penilaian->isEmpty()){
+                    $hasNilai = false;
+                }else{
+                    $hasNilai = true;
+                }
                 return view(
                     'dashboard.penilaian._action',
                     [
                         'id' => $val->id,
+                        'hasNilai' => $hasNilai,
                     ]
                 );
             })

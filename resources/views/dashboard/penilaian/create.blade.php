@@ -17,7 +17,7 @@
 					<div class="card-body">
 						<div class="row d-flex justify-content-center">
 							<div class="col-sm-8">
-								{!! Form::open(['route' => 'penilaian.store','method' => 'POST']) !!}
+								{!! Form::open(['route' => ['penilaian.store','pelamar_id' => request()->pelamar_penilaian],'method' => 'POST']) !!}
 								@include('dashboard.penilaian._form')
 
 								<div class="text-right">

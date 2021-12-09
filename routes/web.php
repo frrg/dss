@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('penilaian/ajaxtable', [PenilaianController::class, 'ajaxTable'])->name('penilaian.ajaxtable');
 	Route::resource('penilaian', PenilaianController::class);
 
+	Route::resource('pelamar-penilaian',PenilaianController::class);
+
 	Route::get('bobot-kriteria/ajaxtable/{kriterium}', [BobotKriteriaController::class, 'ajaxTable'])->name('bobot-kriteria.ajaxtable');
 	Route::resource('kriteria.bobot-kriteria', BobotKriteriaController::class);
 });
