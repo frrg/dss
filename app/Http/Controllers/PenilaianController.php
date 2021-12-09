@@ -36,11 +36,16 @@ class PenilaianController extends Controller
         }
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $nilaiExist = Penilaian::where('pelamar_id',$request->pelamar_penilaian)->exists();
+        if(!$nilaiExist){
         $title = 'Tambah Data Penilaian';
         $kriterium = KriteriaM::all();
         return view('dashboard.penilaian.create', compact('title', 'kriterium'));
+        }else{
+            return redirect()->route('penilaian.index')->with('message', 'Pelamar ini sudah memiliki data Penilaian');
+        }
     }
 
     // edit Nilai Pelamar
