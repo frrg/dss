@@ -24,6 +24,7 @@ class BobotKriteriaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'kode_bobot' => 'required',
             'bobot' => 'required',
             'keterangan' => 'required|min:3',
         ];

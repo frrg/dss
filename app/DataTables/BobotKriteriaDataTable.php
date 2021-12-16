@@ -96,6 +96,7 @@ class BobotKriteriaDataTable extends DataTable
     {
         return [
             Column::computed('DT_RowIndex')->searchable(false)->title('#'),
+            Column::make('kode_bobot')->title('KODE'),
             Column::make('keterangan')->title('KETERANGAN'),
             Column::make('bobot')->title('BOBOT'),
             Column::make('created_at')->title('DIBUAT'),

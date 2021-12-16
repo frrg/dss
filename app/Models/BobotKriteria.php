@@ -10,7 +10,7 @@ class BobotKriteria extends Model
     use HasFactory;
 
     protected $table = 'bobot_kriteria';
-    protected $fillable = ['bobot','keterangan','kriteria_id'];
+    protected $fillable = ['kode_bobot','bobot','keterangan','kriteria_id'];
 
     public function kriteria()
     {
