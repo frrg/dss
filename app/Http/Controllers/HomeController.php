@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KriteriaM;
+use App\Models\Pelamar;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,6 +22,8 @@ class HomeController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('home',compact('title'));
+        $jmlPelamar = Pelamar::count();
+        $jmlKriteria = KriteriaM::count();
+        return view('home',compact('title','jmlPelamar','jmlKriteria'));
     }
 }

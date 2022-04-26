@@ -24,7 +24,7 @@ class Penilaian extends Model
     
     public function kriteria()
     {
-        return $this->belongsTo(Kriteria::class,'kriteria_id');
+        return $this->belongsTo(KriteriaM::class,'kriteria_id');
     }
     
 }

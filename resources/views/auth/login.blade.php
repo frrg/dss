@@ -63,7 +63,7 @@
                     <div class="card-body row d-flex text-center align-items-center">
                         <div class="col-sm-12">
                             <!-- logo company -->
-                            <h3>DSS</h3>
+                            <h3>Sistem Pendukung Keputusan Perekrutan Android Developer</h3>
                             <!-- <img src="{{ asset('img/profile.jpg') }}" class="img-fluid" alt="Logo"> -->
                             <p>By Feri &copy; {{ date('Y') }}</p>
                         </div>

@@ -15,6 +15,12 @@
 						<h4>Data Penilaian</h4>
 					</div>
 					<div class="card-body">
+
+						<div class="form-group row">
+							<div class="col-sm-12 text-right">
+								<a href="{{ route('perhitungan.count') }}" class="btn btn-primary">Hitung</a>
+							</div>
+						</div>
 						@include('dashboard.penilaian._table')
 					</div>
 				</div>
